@@ -1,84 +1,49 @@
-
-import org.testng.annotations.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
-
-
-
+import org.testng.annotations.Test;
 
 public class Homework17 extends BaseTest {
-    WebDriver driver;
-    @Test
-    public void addSongToPlayList() throws InterruptedException{
-        String expectedSongAddedMessage = "Added 1 song into\" Test Pro Playlist.\"";
-        navigateToPage (//qa.koel.app/);
-        provideEmail ("liudmila.chernyh@testpro.io");
-        providePassword ("te$tStudent");
-        clickSubmit();
-        Thread.sleep(2000);
-        searchSong ("Dark Days");
+
+    @Test(description = "Homework 17 - addSongToPlaylist")
+    public void addSongToPlaylist() {
+        loginWithCorrectCreds();
+        enterSongIntoSearchInput();
         clickViewAllBtn();
-        selectFirstSongresult();
-        clickAddToBtn();
-        choosePlaylist();
-        Assert.assertEquals(getAddToPlaylistSuccessMsg(), expectedSongAddedMessage);
-
-
-
-
-
-    
-
+        clickOnSongTitle();
+        clickOnAddToBtn();
+        enterNewUniquePlaylistName();
+        verifySuccessMessage();
     }
 
-    public String getAddToPlaylistSuccessMsg() {
-        WebElement notification = driver.findElement(By.cssSelector("div.success.show"));
-        return notification.getText();
+    private void verifySuccessMessage() {
+        WebElement successBanner = driver.findElement(By.cssSelector(".success"));
+        Assert.assertTrue(successBanner.isDisplayed());
     }
 
-    public void choosePlaylist()throws InterruptedException {
-        WebElement addToButton = driver.findElement(By.xpath("//section[@id='songResultsWrapper']//button[@data-test='add-to-btn']"));
+    private void enterNewUniquePlaylistName() {
+        enterText(By.cssSelector("#songResultsWrapper [data-test='new-playlist-name']"), generateRandomName());
+        WebElement submitBtn =  driver.findElement(By.cssSelector("#songResultsWrapper [type='submit']"));
+        submitBtn.click();
     }
 
-    public void clickAddToBtn() throws  InterruptedException{
-        WebElement addToButton =driver.findElement(By.xpath("//section[@id='songResultsWrapper']//button[@data-test='add-to-btn'"));
+    private void clickOnAddToBtn() {
+        WebElement addToBtn = driver.findElement(By.cssSelector(".btn-add-to"));
+        addToBtn.click();
     }
 
-    public  void selectFirstSongresult() throws InterruptedException {
-        WebElement firstSong = driver.findElement(By.xpath("//section[@id='songResultsWrapper']//button[@data-test='add-to-btn'"));
+    private void clickOnSongTitle() {
+        WebElement songTitle = driver.findElement(By.cssSelector(".search-results .song-item .title"));
+        songTitle.click();
     }
 
-    public void clickViewAllBtn() throws InterruptedException {
-        WebElement viewAll = driver.findElement(By.xpath("//section[@id='songResultsWrapper']//button[@data-test='add-to-btn'"));
+    private void enterSongIntoSearchInput() {
+        enterText(By.cssSelector("[type='search']"), "Reactor");
     }
 
-    public void searchSong(String darkDays) throws InterruptedException {
-        WebElement searchField = driver.findElement(By.cssSelector("div# searchForm input [type='search'"));
-        searchField.sendKeys(Dark Days);
-        Thread.sleep(2000);
+    private void clickViewAllBtn() {
+        WebElement viewAllBtn = driver.findElement(By.cssSelector("[data-test='view-all-songs-btn']"));
+        viewAllBtn.click();
     }
 
-    public void clickSubmit() {
-        WebElement submit = driver.findElement(By.cssSelector("button [type=submit']"));
-    }
-
-    public void providePassword(String te$tStudent) {
-        WebElement passwordField=driver.findElement(By.cssSelector("input [type='password']"));
-        passwordField.clear();
-        passwordField.sendKeys();
-    }
-
-    public void provideEmail(String mail) {
-        WebElement emailField =driver.findElement(By.cssSelector("input[type='email']"));
-        emailField.clear();
-        emailField.sendKeys();
-    }
-
-    public void navigateToPage() {
-        driver.getCurrentUrl();
-    }
 }

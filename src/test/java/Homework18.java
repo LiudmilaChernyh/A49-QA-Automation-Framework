@@ -26,7 +26,7 @@ public class Homework18 extends BaseTest {
     private void clickPlayNextBtn() throws InterruptedException {
         WebElement playNexBtn = driver.findElement(By.cssSelector("[data-testid='play-next-btn']"));
         playNexBtn.click();
-        WebElement playBtn = driver.findElement(By.cssSelector("[data-testid='play-next-btn']"));
+        WebElement playBtn = driver.findElement(By.cssSelector("[data-testid='play-btn']"));
         playBtn.click();
     }
 

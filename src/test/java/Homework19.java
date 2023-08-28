@@ -11,7 +11,7 @@ import java.time.Duration;
 public class Homework19 extends BaseTest {
     @Test
     public void deletePlaylist()throws InterruptedException{
-    String expectedPlaylistDeletedMessege ="Deleted playlist\"TestPro Playlist.\"";
+    String expectedPlaylistDeletedMessege ="Deleted playlist\"Faves.\"";
     navigateToPage();
     provideEmail("demo@class.com");
     providePassword("te$t$tudent");

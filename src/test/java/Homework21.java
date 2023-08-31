@@ -24,6 +24,7 @@ public class Homework21 extends BaseTest{
         providePassword("te$t$tudent");
         clickSubmit();
         doubleClickPlaylist();
+        playlistName="Updated"+playlistName;
         enterNewPlaylistName();
 
 
@@ -36,8 +37,9 @@ public class Homework21 extends BaseTest{
     }
 
     private void enterNewPlaylistName() {
-        WebElement playlistInputField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
-        playlistInputField.sendKeys (Keys.chord(Keys.CONTROL,"A", Keys.BACK_SPACE));
+        WebElement playlistInputField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name'name']")));
+        playlistInputField.sendKeys (Keys.chord(Keys.CONTROL,"A"));
+        playlistInputField.sendKeys (Keys.BACK_SPACE);
         playlistInputField.sendKeys(Keys.ENTER);
 
     }

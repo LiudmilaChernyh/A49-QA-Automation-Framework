@@ -29,6 +29,7 @@ public class BaseTest {
         WebDriverManager.chromedriver().setup();
     }
 
+
     @BeforeMethod
     @Parameters({"BaseURL"})
 
@@ -42,7 +43,8 @@ public class BaseTest {
         url = BaseURL;
         driver.get(url);
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        Actions actions = new Actions(driver);
+        actions = new Actions (driver);
+
     }
     // Helper Methods
 

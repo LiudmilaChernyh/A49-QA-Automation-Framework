@@ -11,12 +11,13 @@ import java.time.Duration;
 
 
 public class Homework21 extends BaseTest{
+    String playlistName = "Deleted Playlist";
 
 
     @Test
     public void renamePlaylist() throws InterruptedException {
-        String updatedPlaylistMsg = "Updated playlist\"Deleted Playlist\"";
-        String playlistName = "Deleted Playlist";
+        String updatedPlaylistMsg = "Updated playlist \"Deleted Playlist.\"";
+
 
 
         navigateToPage();
@@ -24,12 +25,14 @@ public class Homework21 extends BaseTest{
         providePassword("te$t$tudent");
         clickSubmit();
         doubleClickPlaylist();
-        playlistName="Updated"+playlistName;
         enterNewPlaylistName();
+
 
 
         Assert.assertEquals(getRenamePlaylistSuccessMsg(),updatedPlaylistMsg);
     }
+
+
 
     private String getRenamePlaylistSuccessMsg() {
         WebElement notification =wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
@@ -37,9 +40,10 @@ public class Homework21 extends BaseTest{
     }
 
     private void enterNewPlaylistName() {
-        WebElement playlistInputField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name'name']")));
+        WebElement playlistInputField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
         playlistInputField.sendKeys (Keys.chord(Keys.CONTROL,"A"));
         playlistInputField.sendKeys (Keys.BACK_SPACE);
+        playlistInputField.sendKeys(playlistName);
         playlistInputField.sendKeys(Keys.ENTER);
 
     }

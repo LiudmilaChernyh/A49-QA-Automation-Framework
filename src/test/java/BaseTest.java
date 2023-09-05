@@ -9,15 +9,25 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import pages.BasePage;
+import pages.HomePage;
+import pages.LoginPage;
 
 import java.time.Duration;
+import java.util.UUID;
+
 public class BaseTest {
 
     public static WebDriver driver = null;
-
-    public static String url = null;
-    public static  WebDriverWait wait= null;
     public static Actions actions = null;
+
+    public static String url = "https://qa.koel.app/";
+
+    static WebDriverWait wait;
+    static BasePage basePage;
+    static LoginPage loginPage;
+    static HomePage homePage;
+
 
 
 
@@ -38,54 +48,34 @@ public class BaseTest {
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("--disable-popup-blocking");
         options.addArguments("--disable-notifications");
+        options.addArguments("--start-maximized");
         driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        url = BaseURL;
-        driver.get(url);
+
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         actions = new Actions (driver);
-
-    }
-    // Helper Methods
-
-
-    public static void provideEmail(String email) {
-        WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='email']")));
-        emailField.clear();
-        emailField.sendKeys(email);
-    }
-    public static void providePassword(String password) {
-        WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='password']")));
-        passwordField.clear();
-        passwordField.sendKeys(password);
-    }
-
-    public void clickMyPlaylist() throws InterruptedException{
-
-        WebElement myPlayListElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='playlists']/ul/li[3]")));
-        myPlayListElement.click();
+        basePage = new BasePage(driver,wait,actions);
+        basePage. navigateToPage(url);
+        loginPage = new LoginPage(driver, wait,actions);
+        homePage = new HomePage(driver,wait,actions);
 
 
     }
-    public void clickDeleteMyPlaylist(){
-
-        WebElement clickDeleteMyPlaylistElement = driver.findElement(By.xpath("//button[@title='Delete this playlist']"));
-        clickDeleteMyPlaylistElement.click();
-    }
 
 
 
-    public String getDeletedPlaylistNotification() {
 
-        WebElement getDeletedPlaylistElement = driver.findElement(By.cssSelector("div.success.show"));
-        return getDeletedPlaylistElement.getText();
 
-    }
+
+
+
 
     @AfterMethod
 
     public static void closeBrowser () {
+        basePage.quitBrowser();
 
-        driver.quit();
     }
+
+
+
 }

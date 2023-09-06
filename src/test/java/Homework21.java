@@ -1,67 +1,29 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import java.time.Duration;
-
-
+import pages.HomePage;
+import pages.LoginPage;
 
 public class Homework21 extends BaseTest {
-    String playlistName = "Deleted Playlist";
+
 
 
     @Test
 
-    public void renamePlaylist() throws InterruptedException {
+    public void renamePlaylist() {
+        String PlaylistName = "Deleted Playlist";
         String updatedPlaylistMsg = "Updated playlist \"Deleted Playlist.\"";
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+
+        loginPage.login();
+        homePage.doubleClickPlaylist();
+        homePage.enterNewPlaylistName();
 
 
-        doubleClickPlaylist();
-        enterNewPlaylistName();
-
-
-        Assert.assertEquals(getRenamePlaylistSuccessMsg(), updatedPlaylistMsg);
+        Assert.assertEquals(homePage.getRenamePlaylistSuccessMsg(), updatedPlaylistMsg);
     }
 
-
-    private String getRenamePlaylistSuccessMsg() {
-        WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
-        return notification.getText();
-    }
-
-    private void enterNewPlaylistName() {
-        WebElement playlistInputField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
-        playlistInputField.sendKeys(Keys.chord(Keys.CONTROL, "A"));
-        playlistInputField.sendKeys(Keys.BACK_SPACE);
-        playlistInputField.sendKeys(playlistName);
-        playlistInputField.sendKeys(Keys.ENTER);
-
-    }
-
-    private void doubleClickPlaylist() {
-        WebElement playlistElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='playlists']/ul/li[3]")));
-        actions.doubleClick(playlistElement).perform();
-    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

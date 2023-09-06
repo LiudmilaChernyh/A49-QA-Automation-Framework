@@ -16,7 +16,7 @@ public class LoginPage extends BasePage{
 
     public void clickSubmit() {findElement(submitBtn).click();}
 
-    public void  login() throws InterruptedException {
+    public void  login()  {
 
         provideEmail("liudmila.chernyh@testpro.io");
         providePassword("te$t$tudent");

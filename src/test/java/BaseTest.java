@@ -24,25 +24,17 @@ public class BaseTest {
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
     }
-
-
     @BeforeMethod
     @Parameters({"BaseURL"})
-
     public static void launchBrowser(String BaseURL) {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-        options.addArguments("--disable-popup-blocking");
-        options.addArguments("--disable-notifications");
-        options.addArguments("--start-maximized");
-        options.setExperimentalOption("exludeSwitches",new String[]{"enable-automation"});
+        options.addArguments("--disable-notifications","--remote-allow-origins=*", "--incognito","--start-maximized");
+        options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
         driver = new ChromeDriver(options);
         url=BaseURL;
         driver.get(url);
 
-          }
-
-
+    }
     @AfterMethod
 
     public static void closeBrowser () {

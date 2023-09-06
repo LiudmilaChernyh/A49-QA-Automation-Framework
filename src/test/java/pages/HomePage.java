@@ -22,8 +22,7 @@ public class HomePage extends BasePage {
         WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(alert));
         return notification.getText();
     }
-
-    private void enterNewPlaylistName() {
+    public void enterNewPlaylistName(String playlistName) {
         WebElement playlistInputField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
         playlistInputField.sendKeys(Keys.chord(Keys.CONTROL, "A"));
         playlistInputField.sendKeys(Keys.BACK_SPACE);
@@ -31,7 +30,7 @@ public class HomePage extends BasePage {
         playlistInputField.sendKeys(Keys.ENTER);
 
     }
-    private void doubleClickPlaylist() {
+    public void doubleClickPlaylist() {
         WebElement playlistElement = wait.until(ExpectedConditions.visibilityOfElementLocated(playlist));
         actions.doubleClick(playlistElement).perform();
     }

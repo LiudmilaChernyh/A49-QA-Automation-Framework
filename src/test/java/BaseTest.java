@@ -8,6 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import pages.BasePage;
 import pages.HomePage;
 import pages.LoginPage;
+
 public class BaseTest {
 
     public static WebDriver driver = null;

@@ -11,13 +11,16 @@ public class HomePage extends BasePage {
     public HomePage(WebDriver driver, WebDriverWait wait, Actions actions) {
         super(driver, wait, actions);
     }
-    public void clickMyPlaylist() throws InterruptedException{
+
+    public void clickMyPlaylist() throws InterruptedException {
 
         WebElement myPlayListElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='playlists']/ul/li[3]")));
-        myPlayListElement.click();}
-
-
-
-
-
+        myPlayListElement.click();
+    }
 }
+
+
+
+
+
+

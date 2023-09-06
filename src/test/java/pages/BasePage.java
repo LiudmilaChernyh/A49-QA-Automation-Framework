@@ -11,9 +11,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.UUID;
 
 public class BasePage {
-    WebDriver driver;
-    WebDriverWait wait;
-    Actions actions;
+    protected Actions actions;
+    protected WebDriverWait wait;
+    protected WebDriver driver;
 
     public BasePage(WebDriver driver,WebDriverWait wait, Actions actions){
         this.driver = driver;

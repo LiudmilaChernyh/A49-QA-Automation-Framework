@@ -32,22 +32,18 @@ public class HomePage extends BasePage {
         actions.doubleClick(doubleClick).perform();
         return this;
     }
-    public HomePage enterNewPlayListName(String playListName) {
-        wait.until(ExpectedConditions.elementToBeClickable(playListInputField));
-        playListInputField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.BACK_SPACE));
-        playListInputField.sendKeys(playListName);
-        playListInputField.sendKeys(Keys.ENTER);
-        return this;
-    }
+    @FindBy(css = "div.success.show")
+    private WebElement alert;
     public HomePage getRenamePlaylistSuccessMsg (){
         wait.until(ExpectedConditions.elementToBeClickable(alert));
         return this;
     }
-
+    public HomePage enterNewPlaylistName(String playlistName) {
+        wait.until(ExpectedConditions.elementToBeClickable(playListInputField));
+        playListInputField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.BACK_SPACE));
+        playListInputField.sendKeys("Deleted Playlist+");
+        playListInputField.sendKeys(Keys.ENTER);
+        return this;
+    }
 }
-
-
-
-
-
 

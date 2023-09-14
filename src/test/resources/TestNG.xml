@@ -6,7 +6,7 @@
     <test name="LoginTests" preserve-order="false">
         <classes>
 
-            <class name="CucumberRunner"/>
+            <class name="stepDefinitions.CucumberRunner"/>
 
         </classes>
     </test>

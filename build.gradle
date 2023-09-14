@@ -19,4 +19,9 @@ dependencies {
     implementation 'io.cucumber:gherkin:25.0.2'
 
 }
+test{
+    useTestNG {
+        suites "scr/test/resources/TestNG.xml"
+    }
+}
 

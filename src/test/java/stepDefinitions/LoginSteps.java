@@ -52,7 +52,7 @@ public class LoginSteps {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[type='password']"))).sendKeys(password);
     }
     @And("I submit")
-    public void clickSubmit (String email){
+    public void clickSubmit (){
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[type='submit']"))).click();
     }
     @Then("I am logged in")

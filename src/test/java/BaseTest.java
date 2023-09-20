@@ -25,17 +25,15 @@ public class BaseTest {
     WebDriver setupBrowser(String browser) throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
         String gridURL = "http://192.168.1.105:4444";
-        switch (browser) {
-            case "chrome":
-                return setupChrome();
-            case "safari":
-                return setupSafari();
-            case "grid-chrome":
+        return switch (browser) {
+            case "chrome" -> setupChrome();
+            case "safari" -> setupSafari();
+            case "grid-chrome" -> {
                 caps.setCapability("browserName", "chrome");
-                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
-            default:
-                return setupChrome();
-        }
+                yield driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
+            }
+            default -> setupChrome();
+        };
     }public WebDriver setupSafari(){
         WebDriverManager.safaridriver().setup();
         driver =new SafariDriver();

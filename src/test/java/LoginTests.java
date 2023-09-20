@@ -1,10 +1,12 @@
-
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.LoginPage;
+import org.testng.Assert;
 
 public class LoginTests extends BaseTest{
     LoginPage loginPage;
+
+
     @BeforeMethod
     void setup(){
         loginPage = new LoginPage(driver);
@@ -13,6 +15,7 @@ public class LoginTests extends BaseTest{
     @Test
     public void validLogin(){
         loginPage.loginCorrectCred();
+
     }
     @Test
     public void validLoginOnceLoggedIn(){

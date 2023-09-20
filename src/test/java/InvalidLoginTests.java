@@ -1,7 +1,7 @@
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.LoginPage;
-
+import org.testng.Assert;
 
 public class InvalidLoginTests extends BaseTest{
     LoginPage loginPage;
@@ -13,6 +13,7 @@ public class InvalidLoginTests extends BaseTest{
     @Test
     public void invalidPasswordEmail(){
         loginPage.provideEmail("incorrectEmail").providePassword("incorrectPwd").clickSubmit();
+
     }
     @Test
     public void emptyEmail(){

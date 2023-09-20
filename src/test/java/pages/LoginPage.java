@@ -5,13 +5,17 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+
 import java.time.Duration;
+
+import static java.sql.DriverManager.getDriver;
 
 
 public class LoginPage extends BasePage {
     WebDriverWait wait;
-    public LoginPage(WebDriver driver) {
-        super(driver);
+    public LoginPage(WebDriver givenDriver) {
+        super(givenDriver);
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
     }
@@ -21,11 +25,18 @@ public class LoginPage extends BasePage {
     WebElement passwordField;
     @FindBy (css ="[type='submit']")
     WebElement submitBtn;
+    @FindBy(xpath = "//a[@href='registration']")
+     WebElement registrationLink;
+    @FindBy(css = ".fa-sign-out")
+     WebElement logOutLocator;
+
 
     public void loginCorrectCred() {
         provideEmail("liudmila.chernyh@testpro.io");
         providePassword("te$t$tudent");
         clickSubmit();
+
+
     }
 
 
@@ -41,9 +52,16 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    public LoginPage clickSubmit() {
+    public void clickSubmit() {
         wait.until(ExpectedConditions.elementToBeClickable(submitBtn)).click();
+    }
+    public WebElement getRegistrationLink() {
+        return registrationLink;
+    }
+    public LoginPage clicklogOut() {
+        logOutLocator.click();
         return this;
     }
+
 }
 

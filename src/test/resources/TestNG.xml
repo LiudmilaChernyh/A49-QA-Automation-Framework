@@ -10,6 +10,9 @@
         <classes>
             <class name="LoginTests"/>
             <class name="InvalidLoginTests"/>
+            <class name="BaseTest">
+
+            </class>
         </classes>
     </test>
 </suite>

@@ -19,6 +19,7 @@ public class LoginPage extends BasePage {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
     }
+
     @FindBy (css ="input[type='email']")
     WebElement emailField;
     @FindBy (css ="input[type='password']")
@@ -30,6 +31,11 @@ public class LoginPage extends BasePage {
     @FindBy(css = ".fa-sign-out")
      WebElement logOutLocator;
 
+    public boolean isDisplaidLink (){
+        return registrationLink.isDisplayed();
+
+    }
+
 
     public void loginCorrectCred() {
         provideEmail("liudmila.chernyh@testpro.io");
@@ -38,7 +44,6 @@ public class LoginPage extends BasePage {
 
 
     }
-
 
     public LoginPage provideEmail(String email) {
         wait.until(ExpectedConditions.elementToBeClickable(emailField)).clear();

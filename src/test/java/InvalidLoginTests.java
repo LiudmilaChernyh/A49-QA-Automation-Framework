@@ -13,14 +13,18 @@ public class InvalidLoginTests extends BaseTest{
     @Test
     public void invalidPasswordEmail(){
         loginPage.provideEmail("incorrectEmail").providePassword("incorrectPwd").clickSubmit();
+        Assert.assertTrue(loginPage.isDisplaidLink());
 
     }
     @Test
     public void emptyEmail(){
         loginPage.provideEmail("").providePassword("incorrectPwd").clickSubmit();
+        Assert.assertTrue(loginPage.isDisplaidLink());
     }
     @Test
     public void emptyEmailPassword(){
         loginPage.provideEmail("").providePassword("").clickSubmit();
+        Assert.assertTrue(loginPage.isDisplaidLink());
     }
+
 }
